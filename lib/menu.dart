@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({super.key});
+  const MyHomePage({super.key});
+
   final String npm = "2506637041";
   final String nama = "Kevin Nicholas Santoso";
   final String kelas = "PBP KKI";
 
-  final List<ItemHomepage> items = [
-    ItemHomepage("View Projects", Icons.folder),
-    ItemHomepage("Add Project", Icons.add_circle),
-    ItemHomepage("Logout", Icons.logout),
+  final List<ItemHomepage> items = const [
+    ItemHomepage("View Projects", Icons.folder, Colors.pink),
+    ItemHomepage("Add Project", Icons.add_circle, Colors.orange),
+    ItemHomepage("Logout", Icons.logout, Colors.cyan),
   ];
 
   @override
@@ -17,7 +18,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'MyPortfolio',
+          'MyPortofolio',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -30,7 +31,6 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Horizontal row showing 3 InfoCards.
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -42,7 +42,6 @@ class MyHomePage extends StatelessWidget {
 
             const SizedBox(height: 16.0),
 
-            // Greeting and 3-column action grid.
             Center(
               child: Column(
                 children: [
@@ -79,7 +78,6 @@ class MyHomePage extends StatelessWidget {
 }
 
 class InfoCard extends StatelessWidget {
-  // Information card displaying a title and its associated content.
   final String title;
   final String content;
 
@@ -110,8 +108,9 @@ class InfoCard extends StatelessWidget {
 class ItemHomepage {
   final String name;
   final IconData icon;
+  final Color color;
 
-  ItemHomepage(this.name, this.icon);
+  const ItemHomepage(this.name, this.icon, this.color);
 }
 
 class ItemCard extends StatelessWidget {
@@ -122,14 +121,14 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Theme.of(context).colorScheme.secondary,
+      color: item.color,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: () {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
-              SnackBar(content: Text("You pressed the ${item.name} button!"))
+              SnackBar(content: Text("You pressed the ${item.name} button!")),
             );
         },
         child: Container(
