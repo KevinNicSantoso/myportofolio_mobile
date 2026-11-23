@@ -9,10 +9,11 @@ class MyHomePage extends StatelessWidget {
   final String nama = "Kevin Nicholas Santoso";
   final String kelas = "PBP KKI";
 
-  final List<ItemHomepage> items = [
-    ItemHomepage("View Projects", Icons.folder, Colors.pink),
-    ItemHomepage("Add Project", Icons.add_circle, Colors.orange),
-    ItemHomepage("Logout", Icons.logout, Colors.cyan),
+  final List<ItemHomepage> items = const [
+    const ItemHomepage("View Projects", Icons.folder, Colors.pink),
+    const ItemHomepage("Add Project", Icons.add_circle, Colors.orange),
+    const ItemHomepage("Add Education", Icons.school, Colors.teal),
+    const ItemHomepage("Logout", Icons.logout, Colors.cyan),
   ];
 
   @override
@@ -25,7 +26,7 @@ class MyHomePage extends StatelessWidget {
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
-        ),
+        ),  
         backgroundColor: Theme.of(context).colorScheme.primary,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
