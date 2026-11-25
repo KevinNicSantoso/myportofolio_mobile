@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:myportofolio_mobile/screens/menu.dart';
-import 'package:myportofolio_mobile/screens/project_form.dart';
-import 'package:myportofolio_mobile/screens/education_form.dart';
+import 'package:myportfolio_mobile/screens/education_form.dart';
+import 'package:myportfolio_mobile/screens/menu.dart';
+import 'package:myportfolio_mobile/services/auth_state.dart';
+import 'package:myportfolio_mobile/widgets/auth_guard.dart';
+import 'package:provider/provider.dart';
 
 class ItemCard extends StatelessWidget {
   final ItemHomepage item;
@@ -14,30 +16,34 @@ class ItemCard extends StatelessWidget {
       color: item.color,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
-        onTap: () {
+        onTap: () async {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                content: Text("You pressed the ${item.name} button!"),
-              ),
-            );
+            ..showSnackBar(SnackBar(content: Text("You pressed the ${item.name} button!")));
 
-          if (item.name == "Add Project") {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ProjectFormPage(),
-              ),
-            );
-          }
-          if (item.name == "Add Education") {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const EducationFormPage(),
-              ),
-            );
+          // Guard Add Achievement
+          if (item.name == "Add Education" || item.name == "Add Project") {
+            if (await ensureLoggedIn(context)) {
+              if (!context.mounted) return;
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const EducationFormPage()),
+              );
+            }
+          } 
+          // Wire Logout card
+          else if (item.name == "Logout") {
+            final authState = context.read<AuthState>();
+            if (authState.isLoggedIn) {
+              await authState.logout();
+              if (!context.mounted) return;
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Logged out successfully.')),
+              );
+            } else {
+              // If not logged in, prompt login instead
+              await ensureLoggedIn(context);
+            }
           }
         },
         child: Container(
@@ -48,11 +54,7 @@ class ItemCard extends StatelessWidget {
               children: [
                 Icon(item.icon, color: Colors.black87, size: 30.0),
                 const Padding(padding: EdgeInsets.all(3)),
-                Text(
-                  item.name,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.black87),
-                ),
+                Text(item.name, textAlign: TextAlign.center, style: const TextStyle(color: Colors.black87)),
               ],
             ),
           ),
