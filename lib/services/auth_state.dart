@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:myportfolio_mobile/services/api_client.dart';
+import 'package:myportofolio_mobile/services/api_client.dart';
 
 /// Holds the in-memory authentication token for the current session.
 class AuthState extends ChangeNotifier {

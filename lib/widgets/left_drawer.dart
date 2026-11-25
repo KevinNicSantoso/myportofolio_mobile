@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:myportofolio_mobile/screens/education_form.dart';
-import 'package:myportofolio_mobile/screens/experience_list_screen.dart';
 import 'package:myportofolio_mobile/screens/menu.dart';
 import 'package:myportofolio_mobile/screens/project_form.dart';
 import 'package:myportofolio_mobile/services/auth_state.dart';
@@ -73,18 +72,6 @@ class LeftDrawer extends StatelessWidget {
                   ),
                 );
               }
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.work_history_outlined),
-            title: const Text('Experiences'),
-            onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ExperienceListScreen(),
-                ),
-              );
             },
           ),
           if (!isLoggedIn)

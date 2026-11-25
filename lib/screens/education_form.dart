@@ -40,7 +40,9 @@ class _EducationFormPageState extends State<EducationFormPage> {
     final DateTime now = DateTime.now();
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: isStart ? (_startDate ?? now) : (_endDate ?? _startDate ?? now),
+      initialDate: isStart
+          ? (_startDate ?? now)
+          : (_endDate ?? _startDate ?? now),
       firstDate: DateTime(1950),
       lastDate: DateTime(2100),
     );
@@ -86,10 +88,7 @@ class _EducationFormPageState extends State<EducationFormPage> {
       appBar: AppBar(
         title: const Text(
           'Add Education',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
         iconTheme: const IconThemeData(color: Colors.white),
@@ -152,8 +151,7 @@ class _EducationFormPageState extends State<EducationFormPage> {
                   onTap: () {
                     _pickDate(true);
                   },
-                  validator: (value) =>
-                      _validateRequired(value, 'Start date'),
+                  validator: (value) => _validateRequired(value, 'Start date'),
                 ),
               ),
               // === End Date ===
@@ -209,8 +207,7 @@ class _EducationFormPageState extends State<EducationFormPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor:
-                          WidgetStateProperty.all(Colors.indigo),
+                      backgroundColor: WidgetStateProperty.all(Colors.indigo),
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
@@ -222,8 +219,7 @@ class _EducationFormPageState extends State<EducationFormPage> {
                               content: SingleChildScrollView(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       'Institution: ${_institutionController.text}',

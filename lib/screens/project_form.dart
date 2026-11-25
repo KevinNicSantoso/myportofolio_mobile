@@ -46,7 +46,7 @@ class _ProjectFormPageState extends State<ProjectFormPage> {
     final newProject = Project(
       title: _projectName,
       description: _description,
-      year: _category, 
+      year: _category,
     );
 
     try {
@@ -93,11 +93,13 @@ class _ProjectFormPageState extends State<ProjectFormPage> {
       );
     } on ApiException catch (e) {
       if (!mounted) return;
-      
+
       if (e.statusCode == 401) {
         await authState.logout();
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Session expired. Please log in again.')),
+          const SnackBar(
+            content: Text('Session expired. Please log in again.'),
+          ),
         );
         await ensureLoggedIn(context);
       } else {
@@ -114,11 +116,7 @@ class _ProjectFormPageState extends State<ProjectFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            'Add Project Form',
-          ),
-        ),
+        title: const Center(child: Text('Add Project Form')),
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
       ),
@@ -153,7 +151,7 @@ class _ProjectFormPageState extends State<ProjectFormPage> {
                   },
                 ),
               ),
-              // === Description === 
+              // === Description ===
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
@@ -190,10 +188,12 @@ class _ProjectFormPageState extends State<ProjectFormPage> {
                   ),
                   value: _category, // Changed from initialValue to value for standard Flutter compatibility
                   items: _categories
-                      .map((category) => DropdownMenuItem(
-                            value: category,
-                            child: Text(category),
-                          ))
+                      .map(
+                        (category) => DropdownMenuItem(
+                          value: category,
+                          child: Text(category),
+                        ),
+                      )
                       .toList(),
                   onChanged: (String? newValue) {
                     setState(() {

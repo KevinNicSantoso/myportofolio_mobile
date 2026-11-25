@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:myportfolio_mobile/config.dart';
-import 'package:myportfolio_mobile/models/project.dart';
+import 'package:myportofolio_mobile/config.dart';
+import 'package:myportofolio_mobile/models/project.dart';
 
 class ApiException implements Exception {
   const ApiException(this.statusCode, this.message);
@@ -73,10 +73,7 @@ class ApiClient {
   Future<void> logout({required String token}) async {
     final response = await _client.post(
       _uri('/api/v1/auth/logout/'),
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Token $token',
-      },
+      headers: {'Accept': 'application/json', 'Authorization': 'Token $token'},
     );
     _ensureSuccess(response);
   }

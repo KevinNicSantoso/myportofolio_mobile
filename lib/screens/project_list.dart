@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:myportfolio_mobile/models/project.dart';
-import 'package:myportfolio_mobile/screens/project_detail_screen.dart';
-import 'package:myportfolio_mobile/services/api_client.dart';
-import 'package:myportfolio_mobile/widgets/left_drawer.dart';
+import 'package:myportofolio_mobile/models/project.dart';
+import 'package:myportofolio_mobile/screens/project_detail_screen.dart';
+import 'package:myportofolio_mobile/services/api_client.dart';
+import 'package:myportofolio_mobile/widgets/left_drawer.dart';
 import 'package:provider/provider.dart';
 
 class ProjectListScreen extends StatefulWidget {
@@ -75,9 +75,7 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
                   constraints: BoxConstraints(
                     minHeight: MediaQuery.of(context).size.height,
                   ),
-                  child: const Center(
-                    child: Text('No projects found.'),
-                  ),
+                  child: const Center(child: Text('No projects found.')),
                 ),
               ),
             );
