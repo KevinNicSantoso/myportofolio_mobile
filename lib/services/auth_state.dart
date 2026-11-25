@@ -22,6 +22,8 @@ class AuthState extends ChangeNotifier {
     try {
       await _apiClient.logout(token: current);
     } on ApiException {
+      // Server-side logout failed (e.g., token already deleted or
+      // network down). The local session must still end, so we ignore it.
     } finally {
       _token = null;
       notifyListeners();

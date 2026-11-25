@@ -96,6 +96,7 @@ class _ProjectFormPageState extends State<ProjectFormPage> {
 
       if (e.statusCode == 401) {
         await authState.logout();
+        if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Session expired. Please log in again.'),
@@ -186,7 +187,7 @@ class _ProjectFormPageState extends State<ProjectFormPage> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  value: _category, // Changed from initialValue to value for standard Flutter compatibility
+                  initialValue: _category, // Changed from initialValue to value for standard Flutter compatibility
                   items: _categories
                       .map(
                         (category) => DropdownMenuItem(

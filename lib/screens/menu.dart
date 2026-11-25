@@ -10,10 +10,10 @@ class MyHomePage extends StatelessWidget {
   final String kelas = "PBP KKI";
 
   final List<ItemHomepage> items = const [
-    const ItemHomepage("View Projects", Icons.folder, Colors.pink),
-    const ItemHomepage("Add Project", Icons.add_circle, Colors.orange),
-    const ItemHomepage("Add Education", Icons.school, Colors.teal),
-    const ItemHomepage("Logout", Icons.logout, Colors.cyan),
+    ItemHomepage("View Projects", Icons.folder, Colors.pink),
+    ItemHomepage("Add Project", Icons.add_circle, Colors.orange),
+    ItemHomepage("Add Education", Icons.school, Colors.teal),
+    ItemHomepage("Logout", Icons.logout, Colors.cyan),
   ];
 
   @override
@@ -28,7 +28,7 @@ class MyHomePage extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       drawer: const LeftDrawer(),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -56,7 +56,7 @@ class MyHomePage extends StatelessWidget {
                     ),
                   ),
                   GridView.count(
-                    primary: true,
+                    primary: false,
                     padding: const EdgeInsets.all(20),
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,

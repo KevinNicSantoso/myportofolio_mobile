@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:myportofolio_mobile/services/api_client.dart';
 import 'package:myportofolio_mobile/services/auth_state.dart';
 import 'package:provider/provider.dart';
-import 'package:myportofolio_mobile/widgets/auth_guard.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

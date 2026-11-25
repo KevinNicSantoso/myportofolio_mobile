@@ -15,10 +15,7 @@ class ProjectDetailScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          Text(
-            project.title,
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
+          Text(project.title, style: Theme.of(context).textTheme.headlineSmall),
           const SizedBox(height: 8),
           Text('Year: ${project.year}'),
           const Divider(height: 24),
